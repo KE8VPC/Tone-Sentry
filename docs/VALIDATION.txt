@@ -1,0 +1,23 @@
+Version 0.4.1 icon update
+Desktop GUI tests: 2 passed. All seven embedded EXE icon images match the approved ICO bytes. Frozen executable self-test passed with 8 tabs, 1 synthetic MP3, 3 discovery candidates and no external actions.
+
+Version 0.4.0 - 2026-09-09
+79 tests passed, two upstream FTP compatibility deprecation warnings.
+Unknown-tone tests: unconfigured A/B and long tones; timings; short/weak/overlong/mixed/noise rejection; ambiguous stacks; stream reset; repeated observations and database persistence; live/replay source separation; disabled draft creation through GUI; no unknown-triggered jobs or recordings.
+Frozen Windows x64 self-test: eight tabs, bundled help/chart/timezones, audio-device enumeration, MP3 encoding and three discovered candidates from synthetic replay; zero external actions.
+Actual unknown-radio signal field validation remains required. Spectral purity is not identification confidence.
+
+Prior release validation history:
+Version 0.3.1 - 2026-09-07
+Windows x64 / Python 3.10.11
+pytest: 69 passed; two upstream FTP test-server deprecation warnings.
+GUI: initialization, saving tone/integration/schedule/retention, applying chart frequency and offline help verified; isolated Scheduler preview visually inspected.
+Chart: 256 entries, 236 selectable; bundled PDF SHA-256 verified.
+FD Tone Notify: compatible settings, disabled imports, skipped longer sequences, recording flags/limits and actual percentage tolerance detection verified.
+Existing MP3, local HTTP/FTP, receiver coordination and recovery tests pass.
+Live radio, native Linux/macOS/ARM and external service accounts remain untested.
+
+0.3.0: GUI all-tone scheduling, selected-event recording playback and JSON popup verified. Discord request formatting, length and mention suppression verified with simulated delivery. SMTP TLS/login ordering, MP3 MIME byte readback, recipient isolation, sharing suppression and size limits verified with simulated transport. Live Discord/SMTP provider delivery not performed.
+
+0.3.1: compact Discord agency/local-event-time format verified, including omission of receiver and internal IDs.
+Discord template field persistence, preview, supported placeholder expansion and invalid placeholder rejection verified.

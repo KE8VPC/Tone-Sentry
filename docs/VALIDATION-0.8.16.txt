@@ -1,0 +1,42 @@
+Tone Sentry 0.8.16 validation — October 7, 2026
+
+Source: 231 passed, 1 Unix-only skip, 2 test dependency deprecation warnings.
+Full suite: runtime/tests-0.8.16.log (38.03 seconds).
+Focused web/network suite: 18 passed (12.14 seconds).
+Tests cover the missing-stderr listener crash with rejected TLS and plain HTTP,
+rate-limited sanitized logging, auth/CSRF/roles/session expiry, edit conflicts,
+MP3 ranges, managed paths, pause behavior, sign-in event count and credential
+redaction, labeled local IPs, validated/bounded public-IP replies and background
+lookup lifetime. Public-IP service responses were mocked; no live public-IP
+service availability claim or automatic external lookup.
+
+Source isolated diagnostic passed: 2 MP3s, 3 discovery candidates, zero external
+delivery actions. Web setup dialog loaded; public-IP lookup not invoked.
+Both compact tabs passed geometry checks at 1100x740/880x460 and Tk scaling
+1.33/2.0. Existing Tk refresh callback teardown warnings occurred between test
+roots; no geometry assertion failed.
+
+Windows x64 builds: Nuitka 4.2.1 / Python 3.10.11 / MinGW GCC 15.2.
+Build warnings: newer Nuitka available, duplicate tzdata inclusion, and onefile
+Windows runtime DLL discovery warning also present in 0.8.15. Both builds and
+packaged execution checks passed on this host; other Windows hosts remain a
+field check. The psutil license notice is included with other dependencies.
+
+Both EXEs passed real local HTTPS with certificate verification, recovery after
+rejected certificate, sign-in Overview audit, logout, MP3 seeking, pause, tone
+editing, listener stop/start, local interface enumeration and bundled GUI/help.
+Portable EXE was copied alone into a fresh TEMP folder containing spaces and
+launched hidden with --self-test; tests used fresh isolated receiver homes.
+Neither live receiver data nor firewall/router/trust settings were modified.
+All ZIP CRCs and SHA-256 sidecars verified. No accounts or private TLS keys shipped.
+
+Remaining acceptance: real remote laptop LAN/firewall/browser/certificate setup,
+overnight reception and providers, live public-IP lookup, other operating systems.
+This release does not establish public-internet hosting security, universal
+antivirus clearance or non-Windows hardware support. No Pi package rebuilt.
+
+native: PASS; HTTPS survives rejected certificate; login audit, logout, assets, MP3 Range, pause, tone edit, listener restart and local address enumeration passed
+portable: PASS; HTTPS survives rejected certificate; login audit, logout, assets, MP3 Range, pause, tone edit, listener restart and local address enumeration passed
+Tone-Sentry-0.8.16-Portable-Windows-x64.zip: SHA-256 627d33f7745e3989aa53882b20ac626715c3a3ac44c4903013c289b066b69faf; 50813737 bytes
+Tone-Sentry-0.8.16-Windows-x64.zip: SHA-256 629e49466d8f5ac3d6f7c621820af09b9b4920d01ca571044342eb073a3f3527; 70049878 bytes
+Portable EXE SHA-256: b0ddb744000722314c24f64a5877827c93cbdec1ab0502a9244f1f154b3af84d

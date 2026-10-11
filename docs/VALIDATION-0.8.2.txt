@@ -1,0 +1,24 @@
+Tone Sentry 0.8.2 development validation
+
+130 source tests passed, two local FTP dependency deprecation warnings.
+Evidence: runtime/tests-0.8.2.log.
+Local plain FTP uploads were verified directly in the configured directory,
+including retry acceptance and rejection of same-size different contents.
+Templates preserve literal underscores and percent-encode URL path components.
+
+Nuitka Windows x64 folder and onefile builds completed. Both isolated packaged
+diagnostics passed: two MP3 recordings, three discovery candidates, bundled
+encoder/resources, no whitespace in new MP3 names, reversible filename_url
+encoding, and zero external actions. The portable EXE ran after being copied
+alone into a separate temporary directory.
+Evidence: runtime/native-check-0.8.2.json, runtime/portable-check-0.8.2.json.
+Packaging scripts passed ZIP CRC/content checks and portable AMD64 PE check.
+
+SHA-256:
+Folder ZIP: ad0060de892fc7cc92f7f5b57d14df5061b0b47e5b21b3c5a9e880231f6e075c
+Portable EXE: 8bd5a949658f42744dfe3217b2db24d8c818891b5cdf56007461feafe2b05952
+Portable ZIP: 93117aa7ba2005939b964f04a7f7bc313f80e22e6a4ad270ed5c6c7649f7bfc8
+
+No live receiver data, remote FTP/FTPS, Discord server, or physical radio was
+used. Existing remote files were not moved. Public website routing and delivery
+timing need operator testing. FTP and webhook jobs remain independent.

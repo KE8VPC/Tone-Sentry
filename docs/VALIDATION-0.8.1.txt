@@ -1,0 +1,25 @@
+Tone Sentry 0.8.1 development validation
+
+128 source tests passed (runtime/tests-0.8.1.log). Two deprecation warnings
+originate in the local FTP test server dependency.
+Actual local plain FTP tests passed for legacy environment and Base64 passwords,
+uploads, retry handling and filename templates. GUI tests checked masked entry,
+unsaved connection-test values and encoding before saving. Export tests confirmed
+saved passwords are omitted without modifying active settings.
+
+Final Nuitka Windows x64 folder and single-file builds completed. Both passed
+isolated packaged diagnostics: version 0.8.1, two MP3 recordings, three discovery
+candidates, bundled encoder/resources, zero external actions. The portable EXE
+was copied alone into a separate temporary directory before its diagnostic.
+Evidence: runtime/native-check-0.8.1.json and runtime/portable-check-0.8.1.json.
+ZIP CRC and Windows package-content checks passed.
+
+SHA-256:
+Folder ZIP: b00e74861e5db6fde72e270d87ea5ef636baae3b6306bdee5e35f2bea8851bbf
+Portable EXE: 33a4d3bfaa6bb6d93dcf10e539ca7a632ef463a5b0770335ec984480f8efa42b
+Portable ZIP: 21d202a9b2b58604fc67bc3e135899cc5acff19fac9b68d7fc2bd70fab90260a
+
+No live receiver settings were changed. No remote FTP/FTPS server or physical
+radio was tested. Other machine/platform acceptance remains pending. Base64 is
+intentionally reversible, not encrypted. Existing queued jobs retain their old
+destination snapshots; test a new recording after saving new credentials.

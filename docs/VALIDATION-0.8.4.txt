@@ -1,0 +1,22 @@
+Tone Sentry 0.8.4 Windows development build
+
+159 source tests passed, two local FTP dependency deprecation warnings.
+Evidence: runtime/tests-0.8.4.log.
+
+Final Nuitka folder and onefile builds passed isolated packaged diagnostics:
+version 0.8.4, bundled resources/encoder, two completed MP3s, three synthetic
+discovery candidates, settings import review preserving identity and tones,
+and zero external actions. The portable EXE was copied alone into a separate
+temporary folder before testing. No real receiver data was changed.
+Evidence: runtime/native-check-0.8.4.json, runtime/portable-check-0.8.4.json.
+Packaging checks passed ZIP CRC, folder-content restrictions and portable AMD64 PE.
+
+SHA-256:
+Folder ZIP: 3060a47b4221b523ab10819d1a0508ea5c76c8e85759bfbd508613a3123f66ff
+Portable EXE: 9fe9202ef8cdc387f159d5a5c33a02e8141e0970a0397c08098a4357bce564c9
+Portable ZIP: d479484fb373e44e82d1e26a9e6434486283df67a5e21d74068dde750f42af3a
+
+Unsigned unrestricted Windows x64 development release. No antivirus clearance
+is claimed; the reported Defender detection of 0.7.0 remains unresolved.
+Live RF, FTP/FTPS-to-Discord, different-machine/display and other-platform
+acceptance remain pending.

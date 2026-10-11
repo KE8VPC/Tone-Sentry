@@ -1,0 +1,34 @@
+Tone Sentry 0.8.6 — September 18, 2026
+Source suite: 170 passed, 1 Unix-only skipped, 2 existing deprecation warnings.
+Additional GUI diagnostics-copy/sharing-review workflow: 1 passed.
+Small-screen header tests included in full suite.
+Native and portable executable diagnostics passed: each 2 MP3 recordings,
+3 discovery candidates, zero external actions, version 0.8.6.
+Portable tested after copying only its EXE into a fresh temporary folder with spaces.
+Packages inspected for archive integrity, Windows paths, unexpected source/private files.
+No changes made to the remote overnight receiver or its saved configuration.
+Remote interface mapping/error reproduction and real radio/provider acceptance of
+this build remain pending. Prior Defender history is not resolved by these checks.
+Pi 0.8.5 archive was not rebuilt. Live configuration updates remain planned.
+
+Folder package:
+{
+  "executable": "C:\\Users\\wapak\\OneDrive\\Documents\\ChatGPT\\Tone Page Detect\\dist\\Tone-Sentry-0.8.6-Windows-x64\\Tone-Sentry.exe",
+  "archive": "C:\\Users\\wapak\\OneDrive\\Documents\\ChatGPT\\Tone Page Detect\\dist\\Tone-Sentry-0.8.6-Windows-x64.zip",
+  "files": 1613,
+  "bytes": 63212622,
+  "sha256": "fd8355fc921b523768ddf126c3c56441620f80594e526a595f58135785d83235"
+}
+Portable package:
+{
+  "Tone-Sentry-0.8.6-Portable-Windows-x64.exe": {
+    "path": "C:\\Users\\wapak\\OneDrive\\Documents\\ChatGPT\\Tone Page Detect\\dist\\Tone-Sentry-0.8.6-Portable-Windows-x64\\Tone-Sentry-0.8.6-Portable-Windows-x64.exe",
+    "bytes": 46298624,
+    "sha256": "c2596dfd0dd56599dd7ea1cb9117e49765d3d0ff2a8723dcd21d259855caa547"
+  },
+  "Tone-Sentry-0.8.6-Portable-Windows-x64.zip": {
+    "path": "C:\\Users\\wapak\\OneDrive\\Documents\\ChatGPT\\Tone Page Detect\\dist\\Tone-Sentry-0.8.6-Portable-Windows-x64.zip",
+    "bytes": 46263028,
+    "sha256": "2ebe9e5d454045f1a0a0c6fdb8a5df8c1d3196f2f3b9e73339e1e87911f2d060"
+  }
+}

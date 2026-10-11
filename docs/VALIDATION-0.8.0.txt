@@ -1,0 +1,41 @@
+Tone Sentry 0.8.0 development validation — September 10, 2026
+
+Source: 120 tests passed, two deprecation warnings from the local FTP test dependency.
+Evidence: runtime/tests-0.8.0-final.log
+
+Final Nuitka native folder and single-file Windows x64 builds completed.
+The compiled executable and the staged folder executable passed isolated diagnostics.
+The single-file executable was copied alone into a new temporary folder and passed
+the same diagnostic, using its extracted bundled FFmpeg encoder.
+Evidence:
+  runtime/native-check-0.8.0-final.json
+  runtime/staged-check-0.8.0-final.json
+  runtime/portable-check-0.8.0-final.json
+
+Each diagnostic: version 0.8.0, nine tabs, persisted dark theme, shared meter
+controls, formatted help/reference resources, 69 enumerated audio devices and
+38 playback outputs, two completed MP3s, three discovery candidates, six-character
+filename suffixes, matching filename templates, and isolated legacy-folder
+migration preserving receiver identity. External actions: zero.
+
+Source GUI checks include 1020x690 and 880x460 header geometry at three simulated
+scaling levels. Source Overview, Discover Tones, Settings and Help were visually
+reviewed. These checks do not establish usability on every physical display.
+
+Packaging: ZIP CRC checks passed. Folder package inspected for application source,
+private key/database materials and Windows-invalid paths. Portable PE is AMD64.
+No real receiver data was migrated or used in these checks.
+
+SHA-256:
+Tone-Sentry-0.8.0-Windows-x64.zip
+43828cc8cd67f221607a53820641da7e2d5fb1d919a33963513e33cec3e727f8
+Tone-Sentry-0.8.0-Portable-Windows-x64.exe
+72b4278af83832eee0090bfa89c65b7795410206a2807bccf74503d52e7f949e
+Tone-Sentry-0.8.0-Portable-Windows-x64.zip
+e773de77cada8d7e85c1256ce96a408fd518ccf77344567302db002799ee00ba
+
+Remaining acceptance: live RF, prolonged operation, physical playback, remote
+FTP/FTPS and provider delivery, coordinated receiver field testing, different
+Windows machines/displays, and native Linux/macOS/ARM builds. Code signing and
+commercial third-party corresponding-source preparation remain pending.
+This development release remains unrestricted.

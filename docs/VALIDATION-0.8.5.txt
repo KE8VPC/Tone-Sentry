@@ -1,0 +1,21 @@
+Tone Sentry 0.8.5 Windows development validation
+
+167 source tests passed; 1 Unix-only test skipped on Windows; 2 deprecation
+warnings from the local FTP dependency. Evidence: runtime/tests-0.8.5.log.
+
+Both Nuitka Windows x64 builds passed isolated packaged diagnostics: version
+0.8.5, bundled resources and encoder, two completed MP3s, three synthetic
+discovery candidates, settings-import review and zero external actions.
+The portable EXE was copied alone to a separate temporary folder before testing.
+Evidence: runtime/native-check-0.8.5.json and runtime/portable-check-0.8.5.json.
+Package ZIP CRC/content checks and portable AMD64 PE checks passed.
+
+SHA-256:
+Folder ZIP: a467d1ad83828a6649ebe52c0ef7ce136f302f543fb466c6ee1ad42a17b0c97b
+Portable EXE: 09a9f4979be43d7140ebc179c204c60009711ac30a5373c93f36dbd274473855
+Portable ZIP: b0b9cfec32b95f04a8dbb53e8677f7c62e52aabd0da46c5aeb5c61a72f3bf704
+
+No live receiver data or remote installation was changed. Remote script retest,
+MP3 upload/Discord URL issues, live radio reliability and Unix execution remain
+pending. This unrestricted unsigned development build is not claimed to fix
+the unresolved field delivery issue or to establish antivirus clearance.

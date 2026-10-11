@@ -1,0 +1,13 @@
+{
+  "python": "3.10.11",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "packages": {
+    "numpy": "2.2.6",
+    "sounddevice": "0.5.6",
+    "requests": "2.34.2",
+    "imageio-ffmpeg": "0.6.0",
+    "tzdata": "2026.3",
+    "pytest": "9.1.1",
+    "pyftpdlib": "2.2.0"
+  }
+}

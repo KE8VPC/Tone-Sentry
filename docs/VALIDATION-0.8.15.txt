@@ -1,0 +1,40 @@
+Tone Sentry 0.8.15 — validation, October 7, 2026
+
+Source: 223 passed, 1 Unix-only skip, 2 dependency deprecation warnings (asyncore/asynchat).
+Final full run: runtime/tests-0.8.15.log; 34.82 seconds.
+Web tests include authorization, CSRF/origin/Host, session expiration, throttling,
+request limits, idempotency, edit conflicts, validation/persistence failures,
+desktop-dialog blocking, protected MP3 Range 206/416, outside-root rejection,
+missing-file reconciliation, pause/resume and partial-state reset, safe deferred
+edits, pause maximum-recording limit, pending-command cancellation and schedule
+preservation. Real TLS requests verify the generated certificate.
+JavaScript syntax: node --check passed. Source isolated diagnostic passed.
+Desktop layout geometry: 1100x740 and 880x460, Tk scaling 1.33 and 2.0,
+Overview and Discover Tones passed. Existing refresh/refresh_meter callback
+warnings occurred during repeated Tk test-root teardown; no failed assertions.
+
+Both Windows x64 builds: Nuitka 4.2.1, Python 3.10.11, MinGW GCC 15.2.
+Build warnings: newer Nuitka available and duplicate tzdata data-file inclusion.
+Both builds completed successfully. Additional web dependency notices included.
+
+native: PASS; 2 MP3s, 3 discovery candidates, zero external deliveries; Local HTTPS, certificate verification, login/logout, assets, MP3 Range, pause and tone edit passed
+portable: PASS; 2 MP3s, 3 discovery candidates, zero external deliveries; Local HTTPS, certificate verification, login/logout, assets, MP3 Range, pause and tone edit passed
+
+Portable check: copied the EXE alone into a fresh TEMP directory with spaces;
+started hidden with --self-test and isolated data, never the live receiver home.
+Tested packaged HTTPS served HTML/CSS/JS, login/logout, MP3 Range playback,
+paused detection, and a tone edit through the same receiver owner.
+Reports: runtime/native-check-0.8.15.json, runtime/portable-check-0.8.15.json.
+Archives CRC-checked and SHA-256 sidecars matched. No web credentials or private
+certificate keys packaged. Portable EXE matches the tested build byte-for-byte.
+
+Remaining field checks: remote LAN/VPN/firewall, browser certificate acceptance,
+phone/tablet appearance and browser interaction, physical input/output,
+overnight reception, providers, non-Windows and public-network deployment.
+Automated browser visual attempt was blocked by the local certificate warning;
+no browser security exception was bypassed and no OS trust/firewall changes made.
+No updated Pi package. No universal AV or public-internet security acceptance.
+
+Tone-Sentry-0.8.15-Portable-Windows-x64.zip: 8fefcb858fe1575e7bcab732e7c3eacd1bc62b04f7626e545c5e1a9377e2c3ba (50130370 bytes)
+Tone-Sentry-0.8.15-Windows-x64.zip: 316a85c36210cc92dd4315f55aae468e77af418aa26eaf3bed2cec1549014214 (69013897 bytes)
+Tone-Sentry-0.8.15-Portable-Windows-x64.exe: 2d003e373dc6664553b4ac00b3cfa3ea5f0bd5f3308b9ee1b7dbe69d6af5c637

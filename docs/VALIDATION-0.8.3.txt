@@ -1,0 +1,22 @@
+Tone Sentry 0.8.3 development validation
+
+137 source tests passed (runtime/tests-0.8.3.log), with two deprecation warnings
+from the local FTP test dependency. Settings-import tests cover export round
+trips, malformed input and unsupported schema versions, local binding/identity
+and retention preservation, disabled destinations, password omission, rollback
+after a simulated apply failure, and GUI review before applying and backing up.
+
+Final Nuitka Windows x64 folder and onefile executables passed isolated diagnostics.
+The portable EXE was copied alone to a separate temporary folder first.
+Both checks preserved identity and tones during settings-import review, created
+two MP3s and three discovery candidates, used bundled resources/encoder, and sent
+zero external actions. Evidence: runtime/native-check-0.8.3.json and
+runtime/portable-check-0.8.3.json. ZIP CRC/content checks passed.
+
+SHA-256:
+Folder ZIP: 493334aa6e6855ce13fbb34b12b9e885ac03be3ec0a3ba53f07a9bc4b1d52a8b
+Portable EXE: 9f9e06cca86d072b48a50c811b71e1364e8f143842bf7ed60e3548ec883d822c
+Portable ZIP: c71bc9f9730c1a02b309e33dc5bf5d5418356bd6463a651e3c861390418ec157
+
+No real receiver data was imported or changed. Live RF, remote providers,
+different-machine/display behavior and Linux/macOS/ARM remain acceptance work.

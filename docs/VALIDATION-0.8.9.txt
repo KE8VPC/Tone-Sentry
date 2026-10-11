@@ -1,0 +1,108 @@
+Tone Sentry 0.8.9 - October 3, 2026
+Final source suite: 191 passed, 1 Unix-only skip, 2 existing dependency warnings.
+Earlier runs encountered intermittent Tk script startup errors; final complete run
+and both packaged diagnostics passed. No application workaround was introduced.
+Tests cover new versus legacy defaults/imports, invalid zone rejection, local/UTC
+formatting at multiple dates, actual MP3 encoding, saved encoding snapshots and
+legacy queued fallback. JSON epoch start/end values remain unchanged.
+Both Windows x64 builds passed isolated diagnostics, two MP3s and three discovery
+candidates each, zero external actions, verified local filename start and headings.
+Portable EXE tested alone in a fresh folder with spaces. ZIP integrity and SHA256
+sidecars verified. Existing receiver data and remote machine were not changed.
+Live receiver acceptance remains pending. Development is unrestricted; Pi unchanged.
+
+{
+  "package-0.8.9.json": {
+    "executable": "C:\\Users\\wapak\\OneDrive\\Documents\\ChatGPT\\Tone Page Detect\\dist\\Tone-Sentry-0.8.9-Windows-x64\\Tone-Sentry.exe",
+    "archive": "C:\\Users\\wapak\\OneDrive\\Documents\\ChatGPT\\Tone Page Detect\\dist\\Tone-Sentry-0.8.9-Windows-x64.zip",
+    "files": 1613,
+    "bytes": 63271023,
+    "sha256": "351b63abcc727780ae4a407ff4f248e17e8202e664e4649bbd81a4b24e78c26a"
+  },
+  "package-portable-0.8.9.json": {
+    "Tone-Sentry-0.8.9-Portable-Windows-x64.exe": {
+      "path": "C:\\Users\\wapak\\OneDrive\\Documents\\ChatGPT\\Tone Page Detect\\dist\\Tone-Sentry-0.8.9-Portable-Windows-x64\\Tone-Sentry-0.8.9-Portable-Windows-x64.exe",
+      "bytes": 46342144,
+      "sha256": "21848b5e9fbfff5915687e2c4e12a3af0a5e4bcab39720731f828e293722a736"
+    },
+    "Tone-Sentry-0.8.9-Portable-Windows-x64.zip": {
+      "path": "C:\\Users\\wapak\\OneDrive\\Documents\\ChatGPT\\Tone Page Detect\\dist\\Tone-Sentry-0.8.9-Portable-Windows-x64.zip",
+      "bytes": 46309816,
+      "sha256": "0ac91dd63c4224bd6877545675449ea8a594ec15044d0c4def86c66010923c12"
+    }
+  },
+  "native-check-0.8.9.json": {
+    "frozen": true,
+    "native_compiled": true,
+    "version": "0.8.9",
+    "window_title": "Tone Sentry \u00b7 Receiver console",
+    "data_home": "C:\\Users\\wapak\\OneDrive\\Documents\\ChatGPT\\Tone Page Detect\\runtime\\tonepage-exe-check-wpiqvzva",
+    "gui_tabs": [
+      "Overview",
+      "Tone library",
+      "Discover Tones",
+      "Recordings",
+      "Deliveries",
+      "Receivers",
+      "Scheduler",
+      "Settings",
+      "About"
+    ],
+    "theme": "Dark persisted without replacing the engine",
+    "live_gain": "saved without replacing engine; restored to 1x for replay",
+    "formatted_help": "underlined section headings and navigation loaded",
+    "reference_and_help": "ok",
+    "timezone": "America/New_York",
+    "audio_devices": 69,
+    "playback_outputs": 38,
+    "shared_meter_controls": "auto mode saved; discovery manual override synchronized",
+    "bundled_encoder": "C:\\Users\\wapak\\OneDrive\\DOCUME~1\\ChatGPT\\TONEPA~1\\dist\\TONE-S~1.9-W\\imageio_ffmpeg\\binaries\\ffmpeg-win-x86_64-v7.1.exe",
+    "audio_layout": "audio/ without instance subfolders",
+    "short_filenames_and_templates": "six-character suffixes; filename matches completed MP3",
+    "filename_timezone": "local recording-start filenames and labeled local table times verified",
+    "default_folder_migration": "isolated legacy configuration copied with identity preserved",
+    "settings_import": "export reviewed with identity and tones preserved",
+    "history_clearing": "view cleared; internal records retained",
+    "mp3_recordings": 2,
+    "discovery_candidates": 3,
+    "external_actions": 0,
+    "success": true
+  },
+  "portable-check-0.8.9.json": {
+    "frozen": true,
+    "native_compiled": true,
+    "version": "0.8.9",
+    "window_title": "Tone Sentry \u00b7 Receiver console",
+    "data_home": "C:\\Users\\wapak\\OneDrive\\Documents\\ChatGPT\\Tone Page Detect\\runtime\\tonepage-exe-check-i_6e0hfj",
+    "gui_tabs": [
+      "Overview",
+      "Tone library",
+      "Discover Tones",
+      "Recordings",
+      "Deliveries",
+      "Receivers",
+      "Scheduler",
+      "Settings",
+      "About"
+    ],
+    "theme": "Dark persisted without replacing the engine",
+    "live_gain": "saved without replacing engine; restored to 1x for replay",
+    "formatted_help": "underlined section headings and navigation loaded",
+    "reference_and_help": "ok",
+    "timezone": "America/New_York",
+    "audio_devices": 69,
+    "playback_outputs": 38,
+    "shared_meter_controls": "auto mode saved; discovery manual override synchronized",
+    "bundled_encoder": "C:\\Users\\wapak\\AppData\\Local\\Temp\\onefile_5528_390383_wfgvYWnHLIQ\\imageio_ffmpeg\\binaries\\ffmpeg-win-x86_64-v7.1.exe",
+    "audio_layout": "audio/ without instance subfolders",
+    "short_filenames_and_templates": "six-character suffixes; filename matches completed MP3",
+    "filename_timezone": "local recording-start filenames and labeled local table times verified",
+    "default_folder_migration": "isolated legacy configuration copied with identity preserved",
+    "settings_import": "export reviewed with identity and tones preserved",
+    "history_clearing": "view cleared; internal records retained",
+    "mp3_recordings": 2,
+    "discovery_candidates": 3,
+    "external_actions": 0,
+    "success": true
+  }
+}

@@ -1,0 +1,13 @@
+........................................................................ [ 76%]
+......................                                                   [100%]
+============================== warnings summary ===============================
+..\..\..\..\AppData\Local\Programs\Python\Python310\lib\asynchat.py:48
+  C:\Users\wapak\AppData\Local\Programs\Python\Python310\lib\asynchat.py:48: DeprecationWarning: The asyncore module is deprecated and will be removed in Python 3.12. The recommended replacement is asyncio
+    import asyncore
+
+.venv\lib\site-packages\pyftpdlib\handlers\ftp\control.py:5
+  C:\Users\wapak\OneDrive\Documents\ChatGPT\Tone Page Detect\.venv\lib\site-packages\pyftpdlib\handlers\ftp\control.py:5: DeprecationWarning: The asynchat module is deprecated and will be removed in Python 3.12. The recommended replacement is asyncio
+    import asynchat
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+94 passed, 2 warnings in 7.98s

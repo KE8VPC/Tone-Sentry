@@ -1,0 +1,10 @@
+include README.md REQUIREMENTS.md launch_windows.cmd setup_windows.cmd launch.sh setup.sh
+recursive-include docs *.md *.txt *.json
+recursive-include examples *.cfg
+recursive-include tests *.py
+recursive-include scripts *.py
+
+recursive-include tonepage/resources *.json *.pdf *.md
+recursive-include tonepage/resources *.png *.ico
+recursive-include tonepage/resources *.html *.css *.js
+recursive-include assets *.png
