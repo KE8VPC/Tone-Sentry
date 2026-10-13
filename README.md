@@ -2,13 +2,13 @@
 
 A portable Python radio-paging receiver with a desktop console and headless mode. Detect two-tone sequential and long single-tone pages, record MP3 dispatches, and coordinate redundant receivers.
 
-**Version 0.8.17 is an unrestricted development build.** Current features include the remote HTTPS web console, Google Chat and Discord notifications, FTP/FTPS delivery, and local tone discovery. Tone Sentry is standalone; integrations with other applications and services are optional. See [release notes](docs/RELEASE-0.8.17.md), [validation status](docs/RELEASE-STATUS.md), and [Google Chat setup](docs/GOOGLE-CHAT.md).
+**Version 0.8.18 is an unrestricted development build.** Current features include the remote HTTPS web console, Google Chat and Discord notifications, FTP/FTPS delivery, and local tone discovery. Tone Sentry is standalone; integrations with other applications and services are optional. See [release notes](docs/RELEASE-0.8.18.md), [validation status](docs/RELEASE-STATUS.md), and [Google Chat setup](docs/GOOGLE-CHAT.md).
 
 This private repository contains source, tests, documentation and application assets. Receiver settings, credentials, recordings, runtime data and compiled build packages are excluded.
 
 ## Standalone Windows executable
 
-The native Windows x64 bundle is `dist/Tone-Sentry-0.8.17-Windows-x64.zip`. Extract the whole folder and open Tone-Sentry.exe; retain its companion files. Python runtime libraries and FFmpeg are included. See [Windows instructions](docs/WINDOWS-EXE.md) and [compilation/redistribution limits](docs/NATIVE-BUILD.md).
+The native Windows x64 bundle is `dist/Tone-Sentry-0.8.18-Windows-x64.zip`. Extract the whole folder and open Tone-Sentry.exe; retain its companion files. Python runtime libraries and FFmpeg are included. See [Windows instructions](docs/WINDOWS-EXE.md) and [compilation/redistribution limits](docs/NATIVE-BUILD.md).
 
 ## Start on this Windows computer
 

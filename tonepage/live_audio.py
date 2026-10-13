@@ -27,21 +27,22 @@ class Resampler:
 class LiveAudio:
     def __init__(self):
         self.status = ''
+        self.error_prefix = 'Live audio error:'
         self.condition = threading.Condition()
         self.session = None
         self.closed = False
         self.thread = None
 
-    def start(self, source_rate, selection):
+    def start(self, source_rate, selection, label='Live dispatch audio'):
         with self.condition:
             if self.closed:
                 return
             if self.session:
                 self.session['cancel'].set()
-            self.session = dict(rate=source_rate, selection=selection,
+            self.session = dict(rate=source_rate, selection=selection, label=label,
                                 audio=queue.Queue(maxsize=25), cancel=threading.Event(),
                                 finished=threading.Event())
-            self.status = 'Opening live dispatch audio…'
+            self.status = 'Opening '+label.lower()+'…'
             if self.thread is None:
                 self.thread = threading.Thread(target=self._worker, daemon=True)
                 self.thread.start()
@@ -84,12 +85,12 @@ class LiveAudio:
             except Exception as error:
                 with self.condition:
                     if self.session is session and not session['cancel'].is_set():
-                        self.status = 'Live audio error: '+str(error)
+                        self.status = self.error_prefix+' '+str(error)
             finally:
                 with self.condition:
                     if self.session is session:
                         self.session = None
-                        if not self.status.startswith('Live audio error:'):
+                        if not self.status.startswith(self.error_prefix):
                             self.status = ''
                     self.condition.notify_all()
 
@@ -105,7 +106,7 @@ class LiveAudio:
         with sd.OutputStream(device=index, channels=channels, dtype='float32', samplerate=rate) as stream:
             with self.condition:
                 if self.session is session and not session['cancel'].is_set():
-                    self.status = 'Live dispatch audio → '+device['name']
+                    self.status = session['label']+' → '+device['name']
             while not session['cancel'].is_set():
                 try: captured, samples = session['audio'].get(timeout=.05)
                 except queue.Empty:

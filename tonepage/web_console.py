@@ -270,10 +270,12 @@ def create_app(controller, store, settings):
             abort(400)
 
     def record(row):
-        d = json.loads(row['data'])
+        from .discovery_context import context, label
+        d = context(store, json.loads(row['data']))
         return dict(id=row['id'], start=row['at'], end=row['end'], status=row['status'],
             local_time=datetime.fromtimestamp(row['at'], timezone.utc).astimezone().isoformat(timespec='seconds'),
-            filename=Path(row['path']).name if row['path'] else '', agencies=d.get('agencies',[]),
+            filename=Path(row['path']).name if row['path'] else '', agencies=[label(d)] if d.get('discovery_only') else d.get('agencies',[]),
+            discovery_only=bool(d.get('discovery_only')), known_page_overlaps=d.get('known_page_overlaps',[]), discovery_note=d.get('discovery_note'),
             duplicate=bool(d.get('duplicate')), synthetic=bool(d.get('synthetic')), interrupted=bool(d.get('interrupted')))
 
     @app.get('/api/recordings')
@@ -309,9 +311,10 @@ def create_app(controller, store, settings):
         rows = store.rows('SELECT id,at,type,data FROM events ORDER BY at DESC LIMIT 51 OFFSET ?', (page(),))
         items=[]
         for row in rows[:50]:
-            d=json.loads(row.pop('data'))
+            from .discovery_context import context, label
+            d=context(store,json.loads(row.pop('data')))
             # Allowlist only. Raw errors/config/URLs are deliberately not exposed.
-            row.update(agencies=d.get('agencies',[]), actor=d.get('actor'), action=d.get('action'), result=d.get('result'),
+            row.update(agencies=[label(d)] if d.get('discovery_only') else d.get('agencies',[]), actor=d.get('actor'), action=d.get('action'), result=d.get('result'),
                        local_time=datetime.fromtimestamp(row['at'], timezone.utc).astimezone().isoformat(timespec='seconds'))
             items.append(row)
         return jsonify(items=items, more=len(rows)>50)

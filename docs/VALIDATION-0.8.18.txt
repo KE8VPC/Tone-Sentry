@@ -1,0 +1,35 @@
+Tone Sentry 0.8.18 - October 13, 2026
+
+246 passed, 1 skipped; two existing FTP dependency deprecation warnings.
+Feature checks cover advisory time overlap, separation of receiver/replay identity,
+retention of mixed known/unknown candidates, late matches/old filenames,
+clear-history/restart persistence, disabled recording with notify-only,
+duplicate/test/replay/manual-playback suppression, discovery candidate alerts,
+bounded cooldown/cancellation, volume envelope, asynchronous output failure,
+settings validation and legacy live-mode preservation in GUI save.
+Source packaged diagnostic passed: overlap labels present, local-only discovery
+recordings retained, no alert during safe replay, two MP3s, three candidates,
+zero external deliveries. Remote HTTPS diagnostic also passed.
+No receiver runtime data or live monitoring was changed.
+Physical speakers and receiver input/output coexistence require field testing.
+Google Chat live test blocked by user's account restriction; transcription on hold.
+Windows standalone and portable builds succeeded. Both packaged diagnostics
+passed including discovery overlaps, notification controls, safe replay,
+HTTPS recovery/login/playback/restart, two MP3s, three candidates, zero external
+actions. Portable executable tested alone in a fresh folder with spaces.
+ZIP CRCs and SHA-256 sidecars verified. Build warnings: newer Nuitka available,
+duplicate tzdata ignored and Windows runtime DLL inclusion warning as before.
+
+{
+  "Tone-Sentry-0.8.18-Portable-Windows-x64.exe": {
+    "path": "C:\\Users\\wapak\\OneDrive\\Documents\\ChatGPT\\Tone Page Detect\\dist\\Tone-Sentry-0.8.18-Portable-Windows-x64\\Tone-Sentry-0.8.18-Portable-Windows-x64.exe",
+    "bytes": 50865152,
+    "sha256": "222fad807ccb5b80feb42b92902941e9eb9c772a7311b1afb7d8a9126d7a393d"
+  },
+  "Tone-Sentry-0.8.18-Portable-Windows-x64.zip": {
+    "path": "C:\\Users\\wapak\\OneDrive\\Documents\\ChatGPT\\Tone Page Detect\\dist\\Tone-Sentry-0.8.18-Portable-Windows-x64.zip",
+    "bytes": 50857489,
+    "sha256": "3b85d808865421b70924f5f4eb93b332d56e25ad679ec05932ef681c0ea934c4"
+  }
+}
+

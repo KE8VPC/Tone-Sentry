@@ -378,7 +378,7 @@ Included in 0.8.0. Site, Instance ID, Mode and Coordinator Status use one line p
 
 ## Notify-only audible alerts for detection and discovery
 
-Requested October 8, 2026. Planned for future development; not implemented in the current build.
+Requested October 8, 2026. Included in 0.8.18; both Windows packages passed isolated validation. See RELEASE-0.8.18.md.
 
 - Add an optional short alert tone / beep instead of live dispatch audio playback (Notify only mode).
 - Allow separate enable/disable choices for accepted configured-tone detections and newly discovered tone candidates. Alert on candidate events, not continuously on individual audio-analysis frames.
@@ -395,4 +395,9 @@ The release has the exact requested About credit, persistent and consistent Ligh
 
 ## Google Chat notifications — 0.8.17
 
-Implemented October 10: standalone incoming-webhook destination format, auto URL recognition, multiline template/preview, transcript permission handling and existing FTP dependency/retry support. Setup in GOOGLE-CHAT.md. Live Google Workspace delivery remains a field test.
+Implemented October 10: standalone incoming-webhook destination format, auto URL recognition, multiline template/preview, transcript permission handling and existing FTP dependency/retry support. Setup in GOOGLE-CHAT.md. Live Google Workspace delivery is blocked by the user's account restrictions (October 13); do not require it for this release.
+
+
+## Discovery context and transcription status - October 13, 2026
+
+0.8.18 adds advisory known-page overlap labels and details for discovery recordings, preserving full audio and unidentified stacked tones. Prior clips use retained detection history. No automatic merging or deletion. Transcription development is on hold at the user's request pending a better model.

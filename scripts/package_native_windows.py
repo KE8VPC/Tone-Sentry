@@ -9,8 +9,8 @@ import zipfile
 from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
-source = root/'build/native-0.8.17/windows_entry.dist'
-target = root/'dist/Tone-Sentry-0.8.17-Windows-x64'
+source = root/'build/native-0.8.18/windows_entry.dist'
+target = root/'dist/Tone-Sentry-0.8.18-Windows-x64'
 if not (source/'Tone-Sentry.exe').is_file(): raise SystemExit('Compile the native build first')
 if target.exists(): raise SystemExit('Release folder exists; choose a new version or inspect it before replacing')
 shutil.copytree(source, target)
@@ -37,7 +37,7 @@ for option, name in [('-version','FFmpeg-build.txt'),('-L','FFmpeg-license.txt')
     (notices/name).write_text(result.stdout+result.stderr,encoding='utf-8')
 shutil.copy2(root/'docs/NATIVE-BUILD.md', target/'BUILD-AND-LIMITS.md')
 shutil.copy2(root/'docs/WINDOWS-EXE.md', target/'START-HERE.md')
-shutil.copy2(root/'docs/RELEASE-0.8.17.md', target/'RELEASE-NOTES.md')
+shutil.copy2(root/'docs/RELEASE-0.8.18.md', target/'RELEASE-NOTES.md')
 shutil.copy2(root/'tonepage/resources/usage-guide.md', target/'HELP.md')
 (target/'docs').mkdir()
 shutil.copy2(root/'docs/COORDINATION.md',target/'docs/COORDINATION.md')

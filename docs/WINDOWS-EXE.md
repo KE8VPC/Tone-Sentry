@@ -1,6 +1,6 @@
-# Tone Sentry 0.8.17 — Windows development build
+# Tone Sentry 0.8.18 — Windows development build
 
-Extract the complete Tone-Sentry-0.8.17-Windows-x64 ZIP into a folder, then open **Tone-Sentry.exe** inside it. Keep the accompanying files and folders beside the executable. This native compiled build includes Python runtime libraries, Tk, PortAudio, the tone chart, time zones, offline help and FFmpeg; no Python installation is required.
+Extract the complete Tone-Sentry-0.8.18-Windows-x64 ZIP into a folder, then open **Tone-Sentry.exe** inside it. Keep the accompanying files and folders beside the executable. This native compiled build includes Python runtime libraries, Tk, PortAudio, the tone chart, time zones, offline help and FFmpeg; no Python installation is required.
 
 This ZIP contains the application folder. A separately named Portable ZIP contains the single-file executable. Copy or move the whole folder when relocating the program. The application is unrestricted and has no registration requirement.
 
@@ -43,7 +43,7 @@ For development builds, use `python scripts/build_native_windows.py` and `python
 Default-folder migration and the compact layout are described in the included HELP.md. Close older receivers before upgrading. Existing legacy data is copied and preserved for recovery; do not use the retained copy with an older executable. Explicit --home folders are not migrated.
 
 
-## Remote web access in 0.8.17
+## Remote web access in 0.8.18
 
 Open Settings → Remote web console on the receiver to create an account and enable
 HTTPS. See docs/WEB-CONSOLE.md in this package for the address, certificate and

@@ -322,7 +322,19 @@ class FriendlyForms(DiscoveryForms):
         selected=self.config.get('playback',{}).get('device')
         choices={}
         device=form.field('Playback output','System default',['System default'],True)
-        live=form.field('Play live dispatch audio after tone detection',self.config.get('playback',{}).get('live_after_detection',False))
+        playback=self.config.get('playback',{})
+        current_mode='Live dispatch audio' if playback.get('live_after_detection') else 'Notify only' if playback.get('notify_after_detection') else 'Off'
+        mode=form.field('Known-tone listening mode',current_mode,['Off','Notify only','Live dispatch audio'],True)
+        discovery_alert=form.field('Beep for discovered tone candidates',playback.get('discovery_alert',False))
+        volume=form.field('Alert volume (0-100)',playback.get('alert_volume',30))
+        def preview_alert():
+            amount=float(volume.get())
+            if not 0<=amount<=100:raise ValueError('Alert volume must be between 0 and 100')
+            if not self.player.is_idle() or self.engine.live_audio.session is not None:
+                raise ValueError('Stop audio playback before previewing an alert')
+            self.engine.alert_audio.notify(choices[device.get()],amount,preview=True)
+        form.button('Preview alert tone',lambda:self.safe(preview_alert))
+        form.note('Notify only plays a short beep without live dispatch audio. Recording and deliveries are unchanged, including when recording is disabled for a tone. Discovery beeps are separate, at most once per candidate per 60 seconds and one alert every two seconds. Manual playback and active live audio take priority. Discovery alerts indicate measured candidates, not confirmed agencies.')
         form.note('Live audio starts after an accepted configured page and follows its dispatch recording until it ends. Enable recording for that tone set. Ignored/test pages, suppressed repeats and discovery-only candidates do not start playback. Stop playback silences this session; the next accepted dispatch recording can start it again. Manual recording playback takes priority. Device/option changes stop current playback and take effect on the next page.')
         form.note('Used by Overview, Recordings and Discover Tones. This does not change the monitored input. Avoid routing speaker or loopback playback into that input.')
         def refresh():
@@ -340,7 +352,8 @@ class FriendlyForms(DiscoveryForms):
         def save():
             if device.get()=='Unavailable saved device':raise ValueError('Choose an available output or System default')
             updated=copy.deepcopy(self.config)
-            updated['playback']={'device':choices[device.get()],'live_after_detection':bool(live.get())}
+            updated['playback']={'device':choices[device.get()],'live_after_detection':mode.get()=='Live dispatch audio',
+                                 'notify_after_detection':mode.get()=='Notify only','discovery_alert':bool(discovery_alert.get()),'alert_volume':float(volume.get())}
             validate(updated)
             save_config(self.home,updated)
             self.stop_playback()

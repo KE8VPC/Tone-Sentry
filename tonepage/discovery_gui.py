@@ -160,6 +160,13 @@ class DiscoveryForms:
         report=dict(first_seen=row['first_seen'],last_seen=row['last_seen'],observations=row['count'],measurement=data,
                     library_frequency_matches=configured_matches(data,self.config['tones']),nearest_chart_entries=nearest,
                     note='Chart matches suggest standard frequencies only. They do not identify the agency. Purity is spectral concentration, not probability of a valid page.')
+        from .discovery_context import context, label
+        report['recording_contexts']=[]
+        for rid in dict.fromkeys(o.get('recording_id') for o in data.get('recent',[]) if o.get('recording_id')):
+            clips=self.engine.store.rows('SELECT data FROM recordings WHERE id=?',(rid,))
+            if clips:
+                clip=context(self.engine.store,json.loads(clips[0]['data']))
+                report['recording_contexts'].append(dict(recording_id=rid,label=label(clip),known_page_overlaps=clip.get('known_page_overlaps',[]),note=clip.get('discovery_note')))
         win = self.text_dialog('Unknown tone candidate details',json.dumps(report,indent=2))
         if win:
             self.candidate_observations(data, win)

@@ -51,6 +51,7 @@ class Store:
         CREATE TABLE IF NOT EXISTS hidden_history(table_name TEXT NOT NULL,id TEXT NOT NULL,PRIMARY KEY(table_name,id));
         CREATE TABLE IF NOT EXISTS hidden_job_versions(id TEXT PRIMARY KEY,status TEXT NOT NULL,attempts INTEGER NOT NULL);
         CREATE TABLE IF NOT EXISTS events(id TEXT PRIMARY KEY,at REAL NOT NULL,type TEXT NOT NULL,data TEXT NOT NULL);
+        CREATE INDEX IF NOT EXISTS events_type_at ON events(type,at);
         CREATE TABLE IF NOT EXISTS recordings(id TEXT PRIMARY KEY,at REAL NOT NULL,end REAL,status TEXT NOT NULL,path TEXT,data TEXT NOT NULL);
         CREATE TABLE IF NOT EXISTS jobs(id TEXT PRIMARY KEY,kind TEXT NOT NULL,payload TEXT NOT NULL,status TEXT NOT NULL,
           attempts INTEGER NOT NULL DEFAULT 0,due REAL NOT NULL,claim TEXT,error TEXT,created REAL NOT NULL);

@@ -213,7 +213,7 @@ class Application(FriendlyForms):
         for meter in (self.meter,self.discovery_meter):
             meter.gain = gain
             meter.display(self.engine.peak_level if self.engine.running else 0., self.engine.running and time.monotonic()<self.engine.overload_until)
-        self.playback_status.configure(text=self.engine.live_audio.status or self.player.status)
+        self.playback_status.configure(text=self.engine.alert_audio.status or self.engine.live_audio.status or self.player.status)
         self.root.after(80,self.refresh_meter)
 
     def clear_history(self, table, completed=False, mode=None):
@@ -605,6 +605,7 @@ class Application(FriendlyForms):
 
     def stop_playback(self):
         self.player.stop()
+        self.engine.alert_audio.stop()
         self.engine.live_audio.stop()
 
     def play(self):
@@ -614,7 +615,7 @@ class Application(FriendlyForms):
         def action():
             if not row or row['status'] != 'complete' or not row['path'] or not Path(row['path']).is_file():
                 raise ValueError('No completed audio is available for this selection. It may still be recording, have been purged, or be an event without audio.')
-            if not self.engine.live_audio.stop(wait=True):
+            if not self.engine.alert_audio.stop(wait=True) or not self.engine.live_audio.stop(wait=True):
                 raise ValueError('Live audio output is still stopping. Try playback again shortly.')
             self.player.play(Path(row['path']),copy.deepcopy(self.config))
         self.safe(action)
@@ -630,7 +631,8 @@ class Application(FriendlyForms):
         row = self.selected_recording()
         if row:
             transcripts = self.engine.store.rows("SELECT text FROM transcripts WHERE recording_id=?", (row["id"],))
-            data = dict(recording=json.loads(row['data']), status=row['status'], transcripts=[t['text'] for t in transcripts])
+            from .discovery_context import context
+            data = dict(recording=context(self.engine.store,json.loads(row['data'])), status=row['status'], transcripts=[t['text'] for t in transcripts])
             self.text_dialog("Recording details", json.dumps(data, indent=2))
 
     def show_event(self):
@@ -638,7 +640,8 @@ class Application(FriendlyForms):
         if ids:
             rows = self.engine.store.rows("SELECT data FROM events WHERE id=?", (ids[0],))
             if rows:
-                self.text_dialog("Event details", json.dumps(json.loads(rows[0]["data"]), indent=2))
+                from .discovery_context import context
+                self.text_dialog("Event details", json.dumps(context(self.engine.store,json.loads(rows[0]["data"])), indent=2))
 
     def change_job(self, status):
         ids = self.jobs_tree.selection()
@@ -718,16 +721,18 @@ class Application(FriendlyForms):
         self.card_values["ENABLED TONE SETS"].configure(text=sum(t["enabled"] for t in self.config["tones"]))
         self.card_values["RECORDINGS"].configure(text=store.rows("SELECT COUNT(*) n FROM recordings WHERE status='complete'")[0]["n"])
         self.card_values["PENDING ACTIONS"].configure(text=store.rows("SELECT COUNT(*) n FROM jobs WHERE status IN ('pending','running')")[0]["n"])
+        from .discovery_context import context, label
         events = []
         for row in store.visible_history("events", 100):
-            d = json.loads(row["data"])
+            d = context(store, json.loads(row["data"]))
             classification = "Replay" if d.get("synthetic") else "Test" if d.get("test") else "Repeat" if d.get("duplicate") else ""
-            events.append((row["id"], (datetime.fromtimestamp(row["at"]).strftime("%H:%M:%S"), row["type"].replace("_", " "), d.get('message') or ", ".join(d.get("agencies", [])) or d.get("destination", ""), classification)))
+            if d.get("discovery_only"):classification = "Discovery / review"
+            events.append((row["id"], (datetime.fromtimestamp(row["at"]).strftime("%H:%M:%S"), row["type"].replace("_", " "), d.get('message') or label(d) or d.get("destination", ""), classification)))
         self.update_table(self.events_tree, events)
         records = []
         for row in store.visible_history("recordings", 200):
-            d = json.loads(row["data"])
-            records.append((row["id"], (datetime.fromtimestamp(row["at"]).strftime("%m/%d %H:%M:%S"), ", ".join(d.get("agencies", [])), f"{(row['end'] or row['at'])-row['at']:.1f}s", row["status"], Path(row["path"]).name if row["path"] else "")))
+            d = context(store, json.loads(row["data"]))
+            records.append((row["id"], (datetime.fromtimestamp(row["at"]).strftime("%m/%d %H:%M:%S"), label(d), f"{(row['end'] or row['at'])-row['at']:.1f}s", row["status"], Path(row["path"]).name if row["path"] else "")))
         self.update_table(self.recordings_tree, records)
         jobs = []
         from .delivery_status import display_status

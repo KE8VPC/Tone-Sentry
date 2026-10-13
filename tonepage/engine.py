@@ -84,6 +84,8 @@ class Engine(LiveSettings):
         self.replay_safe = False
         from .live_audio import LiveAudio
         self.live_audio = LiveAudio()
+        from .alert_audio import AlertAudio
+        self.alert_audio = AlertAudio()
         self.live_playback_allowed = lambda: True
         handlers = {"encode": self.encode}
         if config["coordination"]["enabled"]:
@@ -293,6 +295,10 @@ class Engine(LiveSettings):
             candidate['recording_id'] = rid
             cid = self.candidates.observe(candidate, 'replay' if self.replay_safe else 'live', offset)
             if rid: self.discovery_audio.link(cid, rid)
+            playback = self.config.get('playback', {})
+            if (playback.get('discovery_alert', False) and not self.replay_safe and not self.detection_paused
+                    and not self.stop_event.is_set() and self.live_playback_allowed() and self.live_audio.session is None):
+                self.alert_audio.notify(copy.deepcopy(playback.get('device')), playback.get('alert_volume', 30), 'discovery:'+cid)
 
     def detect(self, detection, offset):
         t = self.tones[detection.tone_id]
@@ -331,8 +337,13 @@ class Engine(LiveSettings):
         if (self.active and not self.replay_safe and not self.stop_event.is_set() and mode is None and not duplicate
                 and self.config.get('playback',{}).get('live_after_detection',False)
                 and self.live_playback_allowed() and not self.active.get('live_started')):
+            self.alert_audio.stop()
             self.live_audio.start(self.rate, copy.deepcopy(self.config.get('playback',{}).get('device')))
             self.active['live_started'] = True
+        playback = self.config.get('playback', {})
+        if (playback.get('notify_after_detection', False) and not self.replay_safe and not self.stop_event.is_set()
+                and mode is None and not duplicate and self.live_playback_allowed() and self.live_audio.session is None):
+            self.alert_audio.notify(copy.deepcopy(playback.get('device')), playback.get('alert_volume', 30))
         self.store.event("detection", event, at, oid)
         if self.replay_safe:
             return
@@ -388,7 +399,8 @@ class Engine(LiveSettings):
         source = Path(payload["wav"]).resolve()
         if not managed_audio(self.home,source):
             raise PermanentError("Encoding source is outside recording directory")
-        data = payload["data"]
+        from .discovery_context import context
+        data = context(self.store, payload["data"])
         config['recording'] = dict(data.get('encoding_settings', config['recording']))
         from .recording_names import filename_clock
         # Old queued work without an encoding snapshot used UTC. Preserve that choice.
@@ -471,6 +483,7 @@ class Engine(LiveSettings):
                 self._apply_pending_settings()
 
     def stop(self):
+        self.alert_audio.stop()
         self.live_audio.stop()
         self.stop_event.set()
         for thread in (self.capture_thread, self.processing_thread):
@@ -489,3 +502,4 @@ class Engine(LiveSettings):
             self.client.stop()
         self.worker.stop()
         self.live_audio.close()
+        self.alert_audio.close()

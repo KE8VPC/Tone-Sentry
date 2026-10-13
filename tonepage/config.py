@@ -26,7 +26,7 @@ def defaults() -> dict:
         "schema": 1, "instance_id": str(uuid.uuid4()), "site": "Receiver 1",
         "ui": {"theme": "Light", "start_monitoring": False},
         "input": {"device": None, "channel": 0, "sample_rate": 16000, "gain": 1.0, "auto_gain": False},
-        "playback": {"device": None, "live_after_detection": False},
+        "playback": {"device": None, "live_after_detection": False, "notify_after_detection": False, "discovery_alert": False, "alert_volume": 30},
         "detector": {"frame_ms": 40, "min_rms": 0.015, "min_purity": 0.65},
         "discovery": {"enabled":False,"min_seconds":.5,"long_seconds":2.,"max_seconds":15.,
                       "gap_seconds":.5,"stability_hz":8.,"min_purity":.85,"dropout_seconds":.08, **AUDIO_DEFAULTS},
@@ -87,6 +87,13 @@ def validate(c: dict) -> dict:
         raise ValueError('Auto gain must be a checkbox value')
     if type(c.get('playback',{}).get('live_after_detection',False)) is not bool:
         raise ValueError('Live dispatch playback must be a checkbox value')
+    playback = c.get('playback', {})
+    for field in ('notify_after_detection', 'discovery_alert'):
+        if type(playback.get(field, False)) is not bool:
+            raise ValueError('Audible notification options must be checkbox values')
+    if playback.get('notify_after_detection') and playback.get('live_after_detection'):
+        raise ValueError('Choose either Notify only or Live dispatch audio')
+    number(playback.get('alert_volume', 30), 'Alert volume', 0, 100)
     output=c.get('playback',{}).get('device')
     if output is not None and (not isinstance(output,dict) or set(output)!={'name','hostapi'} or not all(isinstance(v,str) and v.strip() for v in output.values())):
         raise ValueError('Choose a playback device from the device list')

@@ -89,6 +89,14 @@ def run(report_path):
         assert recordings and all(r['status']=='complete' and Path(r['path']).stat().st_size>0 for r in recordings),recordings
         assert all(Path(r['path']).parent==home/'audio' for r in recordings)
         report['audio_layout'] = 'audio/ without instance subfolders'
+        from .discovery_context import context, label
+        discovery_clips=[context(app.engine.store,json.loads(r['data'])) for r in recordings if json.loads(r['data']).get('discovery_only')]
+        assert discovery_clips and any(d['known_page_overlaps'] for d in discovery_clips)
+        assert all(label(d).startswith('Discovery clip') and not d['eligible'] and not d['allow_cloud'] for d in discovery_clips)
+        assert app.engine.alert_audio.session is None
+        report['discovery_context']='known-page overlap labels and links, discovery audio retained and local only'
+        report['notify_only']='playback settings loaded; safe replay produces no alert audio'
+
         import re
         from .message_templates import render
         assert all(re.fullmatch('[0-9a-f]{6}',Path(r['path']).stem.rsplit('_',1)[-1]) for r in recordings)

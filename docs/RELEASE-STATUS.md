@@ -1,6 +1,16 @@
 # Tone Sentry release validation and limits
 
-## Current development release: 0.8.17
+## Current development release: 0.8.18
+
+Discovery recording overlap context and optional notify-only/discovery beeps.
+246 source tests passed, one skipped; isolated source application check passed
+with two MP3s, three candidates and no external deliveries. Both Windows x64 packages passed isolated diagnostics, including discovery
+context and the web console. Portable EXE tested alone in a fresh folder; ZIP CRCs
+and SHA-256 sidecars verified. Physical speaker/output-device acceptance remains a field
+check. Google Chat live acceptance is blocked by account restrictions, and
+transcription development is on hold. See RELEASE-0.8.18.md.
+
+## Previous development release: 0.8.17
 
 Google Chat incoming-webhook notifications with standalone provider formatting,
 auto URL recognition, multiline template/preview and setup guide. Source validation:
