@@ -1,7 +1,7 @@
-# Tone Sentry 0.8.5 — Raspberry Pi 5 test package
+# Tone Sentry 0.8.18 — Raspberry Pi 4 test package
 
-Private development package for Raspberry Pi OS **64-bit Desktop** on Pi 5.
-Pi 4 ARM64 is a secondary test target. This is Python application code, not a
+Private development package for Raspberry Pi OS **64-bit Desktop** on Pi 4.
+Pi 5 with the same OS/architecture can also be tested. This is Python application code, not a
 compiled or source-protected release. No Pi hardware validation has been completed.
 
 ## 1. Prepare the Pi
@@ -15,7 +15,7 @@ Check that `uname -m` prints `aarch64`.
 
 Copy the ZIP to the Pi and extract it into a permanent folder in your home
 directory, for example `~/Applications`. Open a terminal in the extracted
-`Tone-Sentry-0.8.5-Pi-ARM64-Test` folder and run:
+`Tone-Sentry-0.8.18-Pi4-ARM64-Test` folder and run:
 
 ```bash
 bash install.sh
@@ -37,7 +37,7 @@ the installer to update its shortcut. Do not move or replace it while running.
 ## 3. Set up reception
 
 Data is stored in **~/ToneSentryData**, independently of the installed program.
-Choose a unique site name, such as `Pi5`, and select the Pi's audio input in
+Choose a unique site name, such as `Pi4`, and select the Pi's audio input in
 Settings. Device numbers and Windows paths are not portable. Set playback output
 separately. Check the input meter and gain before starting monitoring.
 
@@ -92,3 +92,38 @@ See `app/tonepage/resources/usage-guide.md` for the full guide and
 `app/tonepage/resources/third-party.md` for dependency acknowledgments. Dependencies
 are downloaded by the installer, not bundled here. This package is for private
 testing; commercial redistribution preparation remains separate.
+
+
+## Features and boundaries in this package
+
+This package uses the 0.8.18 application source, including discovery overlap labels,
+notify-only beeps, and the optional HTTPS web console. Python 3.10 or newer is
+required. A 32-bit OS is not supported by this installer, even on a 64-bit Pi.
+No model/LLM is installed. Transcription development is on hold; leading pager-tone
+trimming is not implemented in this version. Google Chat remains available but
+live validation is blocked by the account restriction reported by the user.
+
+For beeps, open Playback device, select a Pi output, choose Notify only, set
+volume, and Preview alert tone. Discovery beeps are a separate checkbox. Existing
+recording and delivery settings are independent. Confirm actual speaker routing
+on the Pi; Linux output device names will differ from Windows.
+
+For remote web access, keep the desktop application open, use Settings > Remote
+web console, and create a local account. Use listen address 0.0.0.0 for private-LAN
+access, set the browser address to the Pi's LAN IP, and save. Open the displayed
+HTTPS URL on another computer and compare the certificate fingerprint before
+accepting its warning. See docs/WEB-CONSOLE.md. No firewall/router changes or
+background service are installed. The command-line headless receiver does not
+provide the embedded desktop web console in this release.
+
+This installer does not require a clean OS or reformatting. On an existing Pi,
+stop any old Tone Sentry instance before installing/upgrading. Keep an independent
+backup of ~/ToneSentryData. Do not copy a Windows receiver's entire data directory
+onto the Pi. Use the settings export/import workflow above instead.
+
+Hardware performance is unmeasured: check dropped audio blocks and temperature
+under your actual monitoring/discovery workload. Start with a single receiver
+instance. The package does not alter CPU clocks, power management, or OS audio
+configuration. You can retain this ZIP and test later; there is no reporting
+deadline or activation requirement. Internet package availability can change
+between packaging and installation. Save terminal output if installation fails.

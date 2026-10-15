@@ -5,4 +5,5 @@ if [[ ! -x .venv/bin/python ]]; then
     echo 'Run bash install.sh first.' >&2
     exit 1
 fi
-exec .venv/bin/python -m tonepage --home "$HOME/ToneSentryData" "${@:-gui}"
+if [[ $# == 0 ]]; then set -- gui; fi
+exec .venv/bin/python -m tonepage --home "$HOME/ToneSentryData" "$@"

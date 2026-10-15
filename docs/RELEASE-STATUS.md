@@ -214,3 +214,8 @@ The earlier release introduced live/WAV candidate discovery, frequency/duration 
 ## Application icon (0.4.1)
 
 The approved orange paging beacon and radio-wave design is included in the Windows executable, Tk window/taskbar icon setup, and dialog defaults. Original artwork is retained in assets/icon-original.png. The Windows ICO includes 16, 24, 32, 48, 64, 128 and 256 pixel sizes. Source conversion is reproducible with scripts/build_icon.py using Pillow.
+
+
+## Raspberry Pi 4 ARM64 test bundle - October 15, 2026
+
+0.8.18 private source installer package prepared for Raspberry Pi OS 64-bit Desktop. Archive, script syntax, source-wheel build and CPython 3.11 ARM64 dependency availability checked; no Pi hardware execution. See VALIDATION-PI4-0.8.18.md. Field feedback may be deferred.

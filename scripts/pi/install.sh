@@ -9,6 +9,7 @@ if [[ $EUID == 0 ]]; then
     echo 'Run as your desktop user: bash install.sh (do not use sudo for this script).' >&2
     exit 1
 fi
+python3 verify-package.py
 sudo apt-get update
 sudo apt-get install -y python3 python3-venv python3-tk libportaudio2 ffmpeg
 python3 -c 'import sys; assert sys.version_info >= (3,10), "Python 3.10 or newer is required"'
